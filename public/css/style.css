@@ -173,6 +173,7 @@ footer {
 
 .chatbot {
   grid-column: span 6;
+  color:#000000;
   min-height: 350px;
 }
 
