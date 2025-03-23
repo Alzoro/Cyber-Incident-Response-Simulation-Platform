@@ -109,6 +109,7 @@ footer {
 
 .component {
   background-color: #292929;
+  color: #000000;
   border-radius: var(--border-radius);
   padding: 1.5rem;
   box-shadow: var(--box-shadow);
