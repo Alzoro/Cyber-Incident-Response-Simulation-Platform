@@ -1,0 +1,596 @@
+/* Modern Cybersecurity Theme - style.css */
+:root {
+  --primary-color: #292929;
+  --secondary-color: #ff8000;
+  --accent-color: #ff8000;
+  --dark-color: #292929;
+  --light-color: #333333;
+  --danger-color: #FF4C58;
+  --warning-color: #FFB400;
+  --success-color: #00C897;
+  --info-color: #3F8CFF;
+  --grid-gap: 16px;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  background-color: #000000;
+  background-image: url("C:\Users\mohib\Downloads\background.jpg");
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: #ff8000;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 60px;
+  background-color: var(--secondary-color);
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* Layout */
+header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+header h1 {
+  color: white;
+  margin: 0;
+}
+
+main {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+/* Grid layout for attack simulation page - Improved */
+.attack-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+  margin-bottom: 2rem;
+  align-items: stretch;
+}
+
+.component {
+  background-color: #292929;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 150px;
+  border-left: 2px solid var(--secondary-color);
+}
+
+.component:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.component-header {
+  margin-bottom: 12px;
+}
+
+.component-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.component-footer {
+  margin-top: 12px;
+}
+
+/* Component grid positions - Improved with auto-height */
+.description {
+  grid-column: span 4;
+}
+
+.mitigation {
+  grid-column: span 4;
+}
+
+.simulation {
+  grid-column: span 8;
+  min-height: 300px;
+}
+
+.news-sidebar {
+  grid-column: span 4;
+  min-height: 300px;
+  background-color: var(--primary-color);
+}
+
+.timeline {
+  grid-column: span 6;
+  min-height: 350px;
+}
+
+.gamification {
+  grid-column: span 6;
+}
+
+.chatbot {
+  grid-column: span 6;
+  min-height: 350px;
+}
+
+.reporting {
+  grid-column: span 6;
+}
+
+.integrations {
+  grid-column: span 6;
+}
+
+.risk {
+  grid-column: span 6;
+}
+
+
+
+#news-feed {
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 10px;
+  min-height: 200px;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-item {
+  border-bottom: 1px solid #444444;
+  padding: 10px 0;
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-item h4 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.news-item p {
+  font-size: 0.9rem;
+  color: #cccccc;
+  margin-bottom: 0;
+}
+
+/* Simulation Styling - Improved */
+#simulation-container {
+  background-color: var(--light-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+  min-height: 150px;
+  border-left: 4px solid var(--secondary-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#simulation-step {
+  margin-bottom: 1rem;
+}
+
+/* Timeline Styling - Improved */
+#timeline-container {
+  margin: 1rem 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#timeline-list {
+  list-style: none;
+  position: relative;
+  padding-left: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#timeline-list::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background-color: var(--secondary-color);
+}
+
+#timeline-list li {
+  position: relative;
+  padding: 10px 0;
+  margin-bottom: 15px;
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+}
+
+#timeline-list li::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+}
+
+#timeline-list li[data-active="true"] {
+  opacity: 1;
+  font-weight: 600;
+}
+
+#timeline-list li[data-active="true"]::before {
+  background-color: var(--secondary-color);
+}
+
+/* Button Styling - Improved */
+button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+button:hover {
+  background-color: var(--primary-color);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button.risk-btn {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+button.risk-btn[data-risk="low"] {
+  background-color: var(--success-color);
+}
+
+button.risk-btn[data-risk="medium"] {
+  background-color: var(--warning-color);
+}
+
+button.risk-btn[data-risk="high"] {
+  background-color: var(--danger-color);
+}
+
+/* Chat Box Styling - Improved */
+.chatbot-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#chatbox {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  padding: 10px;
+  margin-bottom: 10px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.chatbot-message, .user-message {
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.chatbot-message {
+  background-color: var(--primary-color);
+  color: #ffffff; /* White text for better readability */
+  border-top-left-radius: 0;
+  align-self: flex-start;
+  border-left: 2px solid var(--secondary-color);
+}
+
+.user-message {
+  background-color: var(--secondary-color);
+  color: white;
+  border-top-right-radius: 0;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  min-width: 0;
+}
+
+/* SIEM Feed Styling - Improved */
+.reporting-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#siem-feed {
+  flex: 1;
+  min-height: 120px;
+  overflow-y: auto;
+  font-family: monospace;
+  padding: 10px;
+  background-color: #000000; /* Black background */
+  color: var(--secondary-color); /* Orange text for cyber terminal feel */
+  border: 1px solid var(--secondary-color);
+}
+
+#siem-feed p {
+  margin: 0;
+  padding: 2px 0;
+  font-size: 0.85rem;
+}
+
+/* Form Elements - Improved */
+textarea, input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+/* Gamification - Improved */
+.gamification-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#scoreboard {
+  background-color: var(--light-color);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  margin-bottom: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Risk Response - Improved */
+.risk-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#risk-response {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  background-color: var(--light-color);
+  flex: 1;
+}
+
+/* Integrations - Improved */
+.integrations-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.integration-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.integration-item:last-child {
+  border-bottom: none;
+}
+
+.integration-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  color: var(--secondary-color);
+}
+
+/* Home page attack list - Improved */
+.attack-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.attack-card {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 3px solid var(--secondary-color);
+}
+
+.attack-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.attack-card__content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.attack-card__icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
+.attack-card__description {
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.attack-card__footer {
+  margin-top: auto;
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 8px 16px;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.back-button:hover {
+  background-color: var(--dark-color);
+  text-decoration: none;
+  color: white;
+}
+
+/* Responsive design - Improved */
+@media (max-width: 1200px) {
+  .attack-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .description, .mitigation {
+    grid-column: span 3;
+  }
+  
+  .simulation, .news-sidebar {
+    grid-column: span 6;
+  }
+  
+  .timeline, .chatbot {
+    grid-column: span 6;
+  }
+  
+  .gamification, .reporting, .integrations, .risk {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .attack-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .description, .mitigation, .simulation, .news-sidebar,
+  .timeline, .gamification, .chatbot, .reporting,
+  .integrations, .risk {
+    grid-column: span 1;
+  }
+  
+  main {
+    padding: 0 1rem;
+  }
+}

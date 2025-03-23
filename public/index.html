@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSim Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        function redirectToPage(page) {
+            window.location.href = page; // Redirects to the given page
+        }
+
+        // Smooth scroll to "About Us" section
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="logo"> 
+            <img src="images/logo.webp" alt="Logo" />
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/simulate">Simulations</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToSection('about')">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Defend. <span>Detect. </span>Defeat. </h1>
+        <button class="explore-btn" onclick="window.location.href='/simulate'">Explore Simulations</button>
+        
+        <!-- Icon Container -->
+        <div class="icons">
+            <img src="images/code-icon.webp" alt="Code" class="code">
+            <img src="images/curly-braces-icon.webp" alt="Curly Braces" class="curly">
+            <img src="images/iot-icon.webp" alt="Hacker Icon" class="hacker">
+            <img src="images/incognito-icon.webp" alt="Community Icon" class="community">
+        </div>
+        
+        <!-- Ninja Character -->
+        <img src="images/ninja-potrait.webp" alt="Ninja Character" class="ninja">
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-us">
+        <h2 class="about-title">About Us</h2>
+        <p>
+            CyberSim is a cutting-edge platform designed to help users master 
+            cybersecurity through interactive simulations and real-world challenges.
+        </p>
+    </section>
+
+</body>
+</html>

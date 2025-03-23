@@ -1,0 +1,220 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #0a0a0a;
+    color: white;
+    text-align: center;
+    align-items: center;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+    background: rgb(41, 41, 41);
+}
+
+/* Logo */
+.logo img {
+    width: 150px;
+    height: auto;
+    margin-left: 130px;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start; 
+}
+
+nav ul li:nth-child(2) { /* Simulations */
+    margin-left: 30px; 
+    position: relative;
+}
+
+nav ul li:nth-child(3) { /* About Us */
+    position: relative;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: rgb(94, 93, 93);
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+}
+
+nav ul li a:hover{
+    color: rgb(255, 123, 0);
+}
+
+/* Hero Section */
+.hero {
+    position: relative; 
+    text-align: center;
+    padding: 50px 20px;
+    background-image: url(images/bg-frame.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90vh;
+}
+
+/* Overlay Fix to Prevent Blocking Hover */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.72); /* Dark overlay */
+    z-index: 1;
+    pointer-events: none; /* Allows clicking through overlay */
+}
+
+/* Ensure all elements inside .hero are above the overlay */
+.hero * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Title */
+.hero h1 span {
+    color: rgb(255, 123, 0);
+}
+
+/* Explore Courses Button */
+.explore-btn {
+    display: inline-block; /* Ensures hover works */
+    top: 69px;
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid rgb(255, 123, 0);
+    background: transparent;
+    border-radius: 25px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    z-index: 3; /* Ensures button is above any overlay */
+    transition: all 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.explore-btn:hover {
+    background: rgb(255, 123, 0);
+    color: white;
+}
+
+/* Ninja Character */
+.ninja {
+    width: 350px; /* Adjust size */
+    display: block;
+    margin: 40px auto;
+    position: relative; /* Allows icons to be positioned around it */
+    top: -131px;
+}
+
+/* Icons Wrapper */
+.icons {
+    position: relative; /* Ensures correct positioning relative to .hero */
+    width: 100%;
+    height: 200px; /* Adjust height to control positioning */
+}
+
+/* General Icon Styling */
+.icons img {
+    position: absolute;
+    animation: floatIcons 1.5s infinite ease-in-out;
+}
+
+/* Code Icon - Above Left */
+.code {
+    width: 98px;
+    top: 10px;
+    left: 33%;
+}
+
+/* Curly Braces Icon - Above Right */
+.curly {
+    width: 150px;
+    top: 30px;
+    left: 61%;
+}
+
+/* Hacker Icon - Left of Ninja */
+.hacker {
+    width: 98px;
+    top: 350px;
+    left: 63%;
+}
+
+/* Community Icon - Right of Ninja */
+.community {
+    width: 150px;
+    top: 358px;
+    left: 30%;
+}
+
+/* Floating Animation for Icons */
+@keyframes floatIcons {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Footer */
+footer {
+    background: black;
+    padding: 20px;
+}
+
+.about-us {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgb(41, 41, 41); /* Same as header */
+    color: white;
+}
+
+/* Styled "About Us" Title */
+.about-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: rgb(255, 123, 0);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Underline Effect */
+.about-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 60px;
+    height: 3px;
+    background: rgb(255, 123, 0);
+    transform: translateX(-50%);
+}
+
+/* About Us Text */
+.about-us p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 20px auto;
+    line-height: 1.6;
+    opacity: 0.9;
+}

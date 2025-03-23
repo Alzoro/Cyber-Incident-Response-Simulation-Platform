@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberSim - Cyber Incident Response Training Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>
+      <i class="fas fa-shield-alt"></i> 
+      <span style="color: #ff8000;">Cyber</span><span style="color: #5e5d5d;">Sim </span> Platform
+    </h1>
+    <p>Advanced Cybersecurity Incident Response Training</p>
+  </header>
+  
+  <main>
+    <section class="intro-section">
+      <h2>Train Your Team for Real-World Cyber Attacks</h2>
+      <p class="lead">Select one of our realistic attack scenarios to begin a guided simulation. Each simulation provides hands-on experience in detecting, analyzing, and mitigating cyber incidents.</p>
+    </section>
+    
+    <ul class="attack-list">
+      <% attacks.forEach(attack => { %>
+        <li class="attack-card">
+          <div class="attack-card__content">
+            <div class="attack-card__icon">
+              <% if (attack.id === 'phishing') { %>
+                <i class="fas fa-envelope"></i>
+              <% } else if (attack.id === 'ddos') { %>
+                <i class="fas fa-network-wired"></i>
+              <% } else if (attack.id === 'ransomware') { %>
+                <i class="fas fa-lock"></i>
+              <% } else if (attack.id === 'sql-injection') { %>
+                <i class="fas fa-database"></i>
+              <% } else if (attack.id === 'xss') { %>
+                <i class="fas fa-code"></i>
+              <% } else if (attack.id === 'insider-threat') { %>
+                <i class="fas fa-user-secret"></i>
+              <% } else if (attack.id === 'mitm') { %>
+                <i class="fas fa-user-ninja"></i>
+              <% } else if (attack.id === 'supply-chain') { %>
+                <i class="fas fa-truck"></i>
+              <% } else if (attack.id === 'apt') { %>
+                <i class="fas fa-radiation"></i>
+              <% } else if (attack.id === 'zero-day') { %>
+                <i class="fas fa-bug"></i>
+              <% } else { %>
+                <i class="fas fa-shield-virus"></i>
+              <% } %>
+            </div>
+            <h3><%= attack.name %></h3>
+            <p><%= attack.description %></p>
+            <a href="/attack/<%= attack.id %>" class="button">Start Simulation <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </li>
+      <% }); %>
+    </ul>
+    
+    <section class="features-section">
+      <h2>Platform Features</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-chart-line"></i>
+          <h3>Real-time Analytics</h3>
+          <p>Monitor response effectiveness with detailed performance metrics.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-users"></i>
+          <h3>Team Training</h3>
+          <p>Improve coordination with role-specific incident response training.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-robot"></i>
+          <h3>AI Assistance</h3>
+          <p>Get guidance from our virtual mentor throughout simulations.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-trophy"></i>
+          <h3>Gamification</h3>
+          <p>Earn points and badges while mastering cybersecurity skills.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 CyberSim Platform | Advanced Cybersecurity Training</p>
+      <div class="footer-links">
+        <a href="#"><i class="fas fa-book"></i> Documentation</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Support</a>
+        <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // Add some animations to the home page
+    anime({
+      targets: '.attack-card',
+      translateY: [50, 0],
+      opacity: [0, 1],
+      delay: anime.stagger(100),
+      easing: 'easeOutQuad',
+      duration: 800
+    });
+  </script>
+</body>
+</html>

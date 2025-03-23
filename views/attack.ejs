@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= attack.name %> Simulation | CyberSim Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- Include anime.js for animation effects -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <!-- Pass simulation steps to the client-side script -->
+  <script>
+    const simulationSteps = <%- JSON.stringify(attack.steps || []) %>;
+  </script>
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-shield-alt"></i> <%= attack.name %> Attack Simulation</h1>
+    <p>CyberSim Platform - Advanced Training Scenario</p>
+  </header>
+  
+  <main>
+    <a href="/" class="back-button"><i class="fas fa-arrow-left"></i> Back to Scenarios</a>
+    
+    <div class="attack-grid">
+      <!-- Description -->
+      <section class="component description">
+        <h2><i class="fas fa-info-circle"></i> Attack Overview</h2>
+        <p>This simulation represents a sophisticated <%= attack.name %> attack targeting enterprise infrastructure. The scenario follows actual TTPs (Tactics, Techniques, and Procedures) observed in recent threat campaigns documented by MITRE ATT&CK framework and leading threat intelligence providers.</p>
+        <div class="attack-methodology">
+          <h4><i class="fas fa-sitemap"></i> Attack Chain Analysis</h4>
+          <p>This attack utilizes a multi-stage approach beginning with initial access via <%= attack.initialVector %>, followed by privilege escalation, lateral movement, and data exfiltration methods consistent with APT behavior patterns.</p>
+        </div>
+        <div class="attack-stats">
+          <div class="stat">
+            <span class="stat-label">Frequency</span>
+            <div class="stat-bar" style="--fill: <%= attack.frequency %>%"></div>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Impact</span>
+            <div class="stat-bar" style="--fill: <%= attack.impact %>%"></div>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Complexity</span>
+            <div class="stat-bar" style="--fill: <%= attack.complexity %>%"></div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Mitigation -->
+      <section class="component mitigation">
+        <h2><i class="fas fa-shield-alt"></i> Defensive Strategy</h2>
+        <p>Effective defense against <%= attack.name %> requires a layered security approach implementing the principle of defense-in-depth across network, endpoint, and application layers.</p>
+        <div class="defense-framework">
+          <h4><i class="fas fa-layer-group"></i> Recommended Controls</h4>
+          <ul class="control-list">
+            <li><strong>Prevention:</strong> <%= attack.preventionControls %></li>
+            <li><strong>Detection:</strong> <%= attack.detectionControls %></li>
+            <li><strong>Response:</strong> <%= attack.responseControls %></li>
+          </ul>
+        </div>
+        <div class="defense-tips">
+          <h4><i class="fas fa-lightbulb"></i> Advanced Security Recommendations</h4>
+          <p><%= attack.tips || "Implement zero trust architecture principles, continuous security validation, and threat hunting procedures to proactively identify indicators of compromise." %></p>
+        </div>
+      </section>
+      
+      <!-- Simulation -->
+      <section class="component simulation">
+        <h2><i class="fas fa-play-circle"></i> Simulation Console</h2>
+        <p>This live simulation environment replicates actual network traffic, system logs, and attack patterns observed in real-world security incidents.</p>
+        <div class="simulation-controls">
+          <div class="simulation-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="simulation-progress"></div>
+            </div>
+            <div class="progress-labels">
+              <span>Initial Access</span>
+              <span>Lateral Movement</span>
+              <span>Exfiltration</span>
+              <span>Recovery</span>
+            </div>
+          </div>
+        </div>
+        <div id="simulation-container">
+          <div class="terminal-header">
+            <span class="terminal-title">Security Operations Center</span>
+            <div class="terminal-buttons">
+              <span class="terminal-btn"></span>
+              <span class="terminal-btn"></span>
+              <span class="terminal-btn"></span>
+            </div>
+          </div>
+          <div id="simulation-step" class="terminal-content">
+            <div class="terminal-prompt">soc@cybersim:~$</div>
+            <div id="terminal-text">Initializing environment... Type "run simulation" or click Start to begin.</div>
+          </div>
+          <div class="simulation-actions">
+            <button id="simulate-btn" class="primary-btn"><i class="fas fa-play"></i> Start Simulation</button>
+            <button id="pause-btn" class="secondary-btn" disabled><i class="fas fa-pause"></i> Pause</button>
+            <button id="accelerate-btn" class="secondary-btn" disabled><i class="fas fa-fast-forward"></i> Accelerate</button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- News Feed -->
+      <aside class="component news-sidebar">
+        <h2><i class="fas fa-newspaper"></i> Threat Intelligence Feed</h2>
+        <div id="news-feed" data-attack="<%= attack.name %>">
+          <div class="loading-spinner"></div>
+          <p>Loading latest intelligence data...</p>
+        </div>
+      </aside>
+      
+      <!-- Timeline & Playbook -->
+      <section class="component timeline">
+        <h2><i class="fas fa-tasks"></i> Incident Response Playbook</h2>
+        <div id="timeline-container">
+          <ul id="timeline-list">
+            <li data-step="1" class="timeline-step">
+              <div class="step-header">
+                <span class="step-phase">Phase 1: Detection</span>
+                <span class="step-time">T+0:00</span>
+              </div>
+              <div class="step-content">Identify initial indicators of compromise through SIEM correlation rules and endpoint telemetry</div>
+            </li>
+            <li data-step="2" class="timeline-step">
+              <div class="step-header">
+                <span class="step-phase">Phase 2: Analysis</span>
+                <span class="step-time">T+0:30</span>
+              </div>
+              <div class="step-content">Perform threat hunting, log analysis, and initial impact assessment</div>
+            </li>
+            <li data-step="3" class="timeline-step">
+              <div class="step-header">
+                <span class="step-phase">Phase 3: Containment</span>
+                <span class="step-time">T+1:15</span>
+              </div>
+              <div class="step-content">Isolate affected systems, block C2 communications, and revoke compromised credentials</div>
+            </li>
+            <li data-step="4" class="timeline-step">
+              <div class="step-header">
+                <span class="step-phase">Phase 4: Eradication</span>
+                <span class="step-time">T+3:00</span>
+              </div>
+              <div class="step-content">Remove malware, patch vulnerabilities, and restore from verified backups</div>
+            </li>
+            <li data-step="5" class="timeline-step">
+              <div class="step-header">
+                <span class="step-phase">Phase 5: Recovery</span>
+                <span class="step-time">T+5:30</span>
+              </div>
+              <div class="step-content">Implement enhanced security controls, return systems to production, and monitor for persistence</div>
+            </li>
+          </ul>
+        </div>
+        <div class="playbook-actions">
+          <button id="timeline-next" class="secondary-btn"><i class="fas fa-arrow-right"></i> Execute Next Response Step</button>
+          <button id="view-full-playbook" class="tertiary-btn"><i class="fas fa-book-open"></i> View Complete Playbook</button>
+        </div>
+      </section>
+      
+      <!-- Gamification -->
+      <section class="component gamification">
+        <h2><i class="fas fa-trophy"></i> Training Metrics</h2>
+        <div id="scoreboard">
+          <div class="score-item">
+            <span class="score-label">Response Effectiveness:</span>
+            <span id="score" class="score-value">0%</span>
+          </div>
+          <div class="score-item">
+            <span class="score-label">Mean Time to Detect:</span>
+            <span id="time-detect" class="score-value">--:--</span>
+          </div>
+          <div class="score-item">
+            <span class="score-label">Mean Time to Respond:</span>
+            <span id="time-respond" class="score-value">--:--</span>
+          </div>
+          <div class="score-item">
+            <span class="score-label">Certifications Earned:</span>
+            <span id="badges" class="score-value">None</span>
+          </div>
+        </div>
+        <div class="performance-metrics">
+          <h4><i class="fas fa-chart-line"></i> Performance Benchmarks</h4>
+          <div class="benchmark-line">
+            <span>Industry Average</span>
+            <div class="benchmark-indicator" style="--position: 65%"></div>
+          </div>
+          <div class="benchmark-line">
+            <span>Your Performance</span>
+            <div class="benchmark-indicator current" style="--position: 0%"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="execute-action" class="action-btn"><i class="fas fa-bolt"></i> Execute Response Action</button>
+        </div>
+      </section>
+      
+      <!-- Chatbot -->
+      <section class="component chatbot">
+        <h2><i class="fas fa-robot"></i> Virtual Security Mentor</h2>
+        <div id="chatbox">
+          <div class="chat-message system">
+            <div class="chat-avatar"><i class="fas fa-shield-alt"></i></div>
+            <div class="chat-content">
+              <p>Welcome to the <%= attack.name %> simulation. I'm your virtual security analyst assistant with expertise in threat detection and incident response. How can I assist with your investigation?</p>
+            </div>
+          </div>
+        </div>
+        <div class="chat-controls">
+          <input type="text" id="chat-input" placeholder="Request threat intelligence or response guidance...">
+          <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div class="chat-suggestions">
+          <button class="suggestion-btn" data-query="What IOCs should I look for?">IOCs</button>
+          <button class="suggestion-btn" data-query="MITRE ATT&CK techniques?">MITRE Techniques</button>
+          <button class="suggestion-btn" data-query="Recommended containment steps?">Containment</button>
+        </div>
+      </section>
+      
+      <!-- Reporting -->
+      <section class="component reporting">
+        <h2><i class="fas fa-file-alt"></i> Incident Report</h2>
+        <div class="report-tabs">
+          <button class="tab-btn active" data-tab="executive">Executive Summary</button>
+          <button class="tab-btn" data-tab="technical">Technical Details</button>
+          <button class="tab-btn" data-tab="timeline">Event Timeline</button>
+          <button class="tab-btn" data-tab="recommendations">Recommendations</button>
+        </div>
+        <form id="report-form">
+          <div class="report-section active" id="executive-section">
+            <label for="executive-summary">Executive Summary:</label>
+            <textarea id="executive-summary" rows="3" placeholder="Summarize the incident, impact, and key response actions..."></textarea>
+          </div>
+          <div class="report-section" id="technical-section">
+            <label for="technical-details">Technical Analysis:</label>
+            <textarea id="technical-details" rows="3" placeholder="Document technical findings, IOCs, and attack vectors..."></textarea>
+          </div>
+          <div class="report-section" id="timeline-section">
+            <label for="event-timeline">Event Timeline:</label>
+            <textarea id="event-timeline" rows="3" placeholder="Document chronological sequence of attack and response..."></textarea>
+          </div>
+          <div class="report-section" id="recommendations-section">
+            <label for="recommendations">Security Recommendations:</label>
+            <textarea id="recommendations" rows="3" placeholder="Provide actionable recommendations to prevent future incidents..."></textarea>
+          </div>
+          <div class="report-actions">
+            <button type="submit" class="primary-btn"><i class="fas fa-save"></i> Submit Report</button>
+            <button type="button" id="template-btn" class="secondary-btn"><i class="fas fa-file-medical"></i> Load Template</button>
+          </div>
+        </form>
+        <div id="report-response"></div>
+      </section>
+      
+      <!-- SIEM Feed -->
+      <section class="component integrations">
+        <h2><i class="fas fa-terminal"></i> SIEM Log Analysis</h2>
+        <div class="siem-controls">
+          <select id="log-source">
+            <option value="all">All Sources</option>
+            <option value="firewall">Firewall</option>
+            <option value="endpoint">Endpoint Protection</option>
+            <option value="ad">Active Directory</option>
+            <option value="proxy">Web Proxy</option>
+          </select>
+          <div class="filter-controls">
+            <input type="text" id="log-filter" placeholder="Filter logs...">
+            <button id="filter-btn"><i class="fas fa-filter"></i></button>
+          </div>
+        </div>
+        <div id="siem-feed" class="terminal-output">
+          <p class="log-entry severity-info"><span class="timestamp">[2025-03-23 14:32:15]</span> <span class="source">[System]</span> Initializing log stream correlation engine...</p>
+        </div>
+        <div class="siem-actions">
+          <button id="analyze-logs" class="secondary-btn"><i class="fas fa-search"></i> Run Log Analysis</button>
+          <button id="export-logs" class="tertiary-btn"><i class="fas fa-download"></i> Export</button>
+        </div>
+      </section>
+      
+      <!-- Risk Assessment -->
+      <section class="component risk">
+        <h2><i class="fas fa-chart-pie"></i> Risk Assessment</h2>
+        <div class="risk-matrix">
+          <div class="risk-header">
+            <span>Threat Analysis Matrix:</span>
+          </div>
+          <div id="risk-matrix">
+            <div class="matrix-container">
+              <div class="matrix-row">
+                <div class="matrix-cell header">Impact</div>
+                <div class="matrix-cell header">Low</div>
+                <div class="matrix-cell header">Medium</div>
+                <div class="matrix-cell header">High</div>
+              </div>
+              <div class="matrix-row">
+                <div class="matrix-cell header">High</div>
+                <div class="matrix-cell" data-risk="medium">Medium</div>
+                <div class="matrix-cell" data-risk="high">High</div>
+                <div class="matrix-cell" data-risk="critical">Critical</div>
+              </div>
+              <div class="matrix-row">
+                <div class="matrix-cell header">Medium</div>
+                <div class="matrix-cell" data-risk="low">Low</div>
+                <div class="matrix-cell" data-risk="medium">Medium</div>
+                <div class="matrix-cell" data-risk="high">High</div>
+              </div>
+              <div class="matrix-row">
+                <div class="matrix-cell header">Low</div>
+                <div class="matrix-cell" data-risk="negligible">Negligible</div>
+                <div class="matrix-cell" data-risk="low">Low</div>
+                <div class="matrix-cell" data-risk="medium">Medium</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="risk-assessment">
+          <h4><i class="fas fa-clipboard-check"></i> Current Assessment</h4>
+          <div class="assessment-fields">
+            <div class="assessment-field">
+              <label for="likelihood">Likelihood:</label>
+              <select id="likelihood">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div class="assessment-field">
+              <label for="impact">Impact:</label>
+              <select id="impact">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high" selected>High</option>
+              </select>
+            </div>
+            <div class="assessment-result">
+              <span>Current Risk Level: </span>
+              <span id="current-risk" class="risk-level high">HIGH</span>
+            </div>
+          </div>
+        </div>
+        <div id="risk-response"></div>
+      </section>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 CyberSim Platform | Advanced Cybersecurity Training</p>
+      <div class="footer-links">
+        <a href="#"><i class="fas fa-book"></i> Documentation</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Support</a>
+        <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Load our JavaScript files for various features -->
+  <script src="/js/simulation.js"></script>
+  <script src="/js/newsfeed.js"></script>
+  <script src="/js/extrafeatures.js"></script>
+</body>
+</html>
