@@ -168,24 +168,24 @@ Our platform stands out with several innovative features:
 
 - **Attack Overview & Defensive Strategy:**
 
-  ![Simulation Console](./images/sim1.png)
+  ![Simulation Console](./images/sim1.jpg)
 
 - **Simulation Console & Threat Intelligence Feed:**
 
-  ![News Feed](./images/sim2.png)
+  ![News Feed](./images/sim2.jpg)
 
 - **Incident Response Playbook  & Training Metrics:**
 
-  ![Timeline](./images/sim3.png)
+  ![Timeline](./images/sim3.jpg)
 
 - **Virtual Security Mentor & Incident Report:**
 
-  ![Training Metrics](./images/sim4.png)
+  ![Training Metrics](./images/sim4.jpg)
 
 
 - **SIEM Log Analysis & Risk Assessment:**
 
-  ![SIEM & Risk](./images/sim5.png)
+  ![SIEM & Risk](./images/sim5.jpg)
 
 
 ---
