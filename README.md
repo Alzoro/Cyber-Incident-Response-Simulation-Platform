@@ -161,7 +161,11 @@ Our platform stands out with several innovative features:
 
 ## Screenshots
 
-- **Dashboard / Home Page:**
+- **Home Page:**
+
+  ![Home Page](./images/intro.png)
+
+- **Dashboard:**
 
   ![Dashboard](./images/dashboard1.png)
   ![Dashboard](./images/dashboard2.png)
